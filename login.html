@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative Login</title>
+    <style>
+        /* Styling dasar untuk tampilan login dan tombol GO */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+        
+        }
+
+        .login-container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 300px;
+        }
+
+        h2 {
+        color: #6e8efb;
+        margin-bottom: 20px;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-bottom: 2px solid #ddd;
+            outline: none;
+            background: none;
+            font-size: 16px;
+        }
+        .input-group label {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            color: #aaa;
+            font-size: 16px;
+            pointer-events: none;
+            transition: 0.3s;
+        }
+
+        .input-group input:focus ~ label,
+        .input-group input:not(:placeholder-shown) ~ label {
+        top: -5px;
+        font-size: 12px;
+        color: #6e8efb;
+        }
+
+        .login-button, .go-button:hover {
+        background: #6e8efb;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: 0.3s;
+        }
+
+        .login-button:hover, .go-button:hover {
+            background: #a777e3;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 15px;
+        }
+
+        /* Style untuk container tombol GO */
+        #goButtonContainer {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            height: 500vh;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container" id="loginForm">
+        <h2>Welcome Back!</h2>
+        <!-- Form login -->
+        <form onsubmit="return validateLogin()">
+            <div class="input-group">
+                <input type="text" id="userId" required placeholder="ID">
+            </div>
+            <div class="input-group">
+                <input type="password" id="password" required placeholder="Password">
+            </div>
+            <button type="submit" class="login-button">Login</button>
+        </form>
+        <p class="error-message" id="errorMessage"></p>
+    </div>
+
+    <!-- Container untuk tombol GO setelah login -->
+    <div id="goButtonContainer">
+        <button onclick="goToLink()" class="go-button">GO</button>
+    </div>
+
+    <script>
+        const users = [
+            { userId: "ley21", password: "olen123" },
+            { userId: "admin01", password: "adminpass" },
+            { userId: "guest99", password: "guestpass" },
+            { userId: "member45", password: "memberpass" }
+        ];
+
+        function validateLogin() {
+            const userId = document.getElementById("userId").value;
+            const password = document.getElementById("password").value;
+            const errorMessage = document.getElementById("errorMessage");
+
+            // Mencari kecocokan ID dan password di dalam daftar users
+            const user = users.find(u => u.userId === userId && u.password === password);
+
+            if (user) {
+                errorMessage.textContent = "";
+                
+                // Menyembunyikan form login dan menampilkan tombol "GO"
+                document.getElementById("loginForm").style.display = "none";
+                document.getElementById("goButtonContainer").style.display = "flex";
+                
+                return false;
+            } else {
+                errorMessage.textContent = "Invalid ID or Password!";
+                return false;
+            }
+        }
+
+        // Fungsi untuk membuka link saat tombol GO diklik
+        function goToLink() {
+            window.location.href = "https://www.rbsports77.com/id";  // Ganti dengan link yang Anda inginkan
+        }
+    </script>
+</body>
+</html>
